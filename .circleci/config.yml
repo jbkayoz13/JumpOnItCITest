@@ -21,10 +21,7 @@ jobs:
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Change Directory
-          command: mvn -f ClassManagementComponent/ClassManagement
-      - run:
-          name: Build
-          command: mvn -B -DskipTests clean package
+          command: mvn -f ClassManagementComponent/ClassManagement -B -DskipTests clean package
       # Then run your tests!
       - run:
           name: Test
