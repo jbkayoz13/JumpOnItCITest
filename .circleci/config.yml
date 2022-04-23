@@ -20,11 +20,11 @@ jobs:
       - checkout
       # Use mvn clean and package as the standard maven build phase
       - run:
-          name: Change Directory
+          name: Change Directory and Build Class Management
           command: mvn -f ClassManagementComponent/ClassManagement -B -DskipTests clean package
       # Then run your tests!
       - run:
-          name: Test
+          name: Change Directory and Test Class Management
           command: mvn -f ClassManagementComponent/ClassManagement test
 
 # Invoke jobs via workflows
