@@ -26,6 +26,12 @@ jobs:
       - run:
           name: Test Class Management
           command: mvn -f ClassManagementComponent/ClassManagement test
+      - run:
+          name: Build Registration
+          command: mvn -f RegistrationComponent/swe443-registration -B -DskipTests clean package
+      - run: 
+          name: Test Registration
+          command: mvn -f RegistrationComponent/swe443-registration test
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
