@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>JumpOnIt!</title>
+
+    <link th:rel="stylesheet" th:href="@{/assets/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} "/>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Class Management: Create A Class</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="ViewClasses">View
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-4 mt-5">
+            <form method="post" th:object="${CreateClasses}">
+
+                <div class="form-group">
+                    <label for="className">Class Name:</label>
+                    <input type="text" id="className" placeholder="Class Name" autocomplete="off" class="form-control"
+                           th:field="*{className}"/>
+                    <p  th:if="${#fields.hasErrors('className')}" th:class="${#fields.hasErrors('className')}? error">
+                        Invalid Age</p>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="classTrainer">Class Trainer:</label>
+                    <input type="text" id="classTrainer" placeholder="Class Trainer" autocomplete="off" class="form-control"
+                           th:field="*{classTrainer}"/>
+                    <p  th:if="${#fields.hasErrors('classTrainer')}" th:class="${#fields.hasErrors('classTrainer')}? error">
+                        Invalid Trainer</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="classLocation">Class Location:</label>
+                    <input type="text" id="classLocation" placeholder="Class Location" autocomplete="off" class="form-control"
+                           th:field="*{classLocation}"/>
+                    <p  th:if="${#fields.hasErrors('classLocation')}" th:class="${#fields.hasErrors('classLocation')}? error">
+                        Invalid Location</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="classDate">Class Date:</label>
+                    <input type="date" id="classDate" autocomplete="off" class="form-control"
+                           th:field="*{classDate}"/>
+                    <p  th:if="${#fields.hasErrors('classDate')}" th:class="${#fields.hasErrors('classDate')}? error">
+                        Invalid Date</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="classTime">Class Time:</label>
+                    <input type="time" id="classTime" autocomplete="off" class="form-control"
+                           th:field="*{classTime}"/>
+                    <p  th:if="${#fields.hasErrors('classTime')}" th:class="${#fields.hasErrors('classTime')}? error">
+                        Invalid Time</p>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Submit form</button>
+            </form>
+        </div>
+    </div>
+</div>
+<a href="index.html">Class Management: Home</a>
+</body>
+</html>

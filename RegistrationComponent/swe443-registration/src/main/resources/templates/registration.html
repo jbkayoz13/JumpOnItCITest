@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>JumpOnIt Registration</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<div style="border:5px solid black" th:each="class : ${data}">
+		
+		<div th:text="${'Name: ' + class.name}"></div>
+		<div th:text="${'Location: ' + class.location}"></div>
+		<div th:text="${'Date and Time: ' + class.date}"></div>
+		<div th:text="${'Average Review Rating: ' + class.reviewRating}"></div>
+		
+		<form th:action="@{/registration}" th:object="${registration}" method="post">
+			<input type="hidden" th:value="1" th:attr="name='memberID'"/>
+			<input type="hidden" th:value="${class.classID}" th:attr="name='classID'"/>
+			<input type="submit" value="REGISTER"/>
+		</form>
+		
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Class Management</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:rel="stylesheet" th:href="@{/assets/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} "/>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Class Management: View Classes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="CreateClasses">Create Class
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="example" class="table table-bordered" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>Class Name</th>
+                    <th>Class Trainer</th>
+                    <th>Class Location</th>
+                    <th>Class Date</th>
+                    <th>Class Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="AvailableClass : ${CreatedClasses.page.content}">
+                    <td th:text="${AvailableClass.className}">Class Name</td>
+                    <td th:text="${AvailableClass.classTrainer}">Class Trainer</td>
+                    <td th:text="${AvailableClass.classLocation}">Class Location</td>
+                    <td th:text="${#dates.format(AvailableClass.classDate, 'MM-dd-yyyy')}">Class Date</td>
+                    <td th:text="${AvailableClass.classTime}">Class Time</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <nav aria-label="Page navigation" class="paging">
+                <ul class="pagination" th:if="${CreatedClasses.page.totalPages > 1}">
+                    <li class="page-item" th:classappend="${!CreatedClasses.paging.isPrevEnabled()? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{${#httpServletRequest.requestURI}+'?pageNumber=' + ${CreatedClasses.paging.pageNumber - 1}}"
+                           tabindex="-1">Previous</a>
+                    </li>
+                    <th:block th:each="item : ${CreatedClasses.paging.getItems()}">
+                        <li class="page-item" th:classappend="${item.index == CreatedClasses.paging.pageNumber? 'active' : ''}"
+                            th:if="${item.pageItemType.name() == 'PAGE'}">
+                            <a class="page-link" th:href="@{${#httpServletRequest.requestURI}+'?pageNumber=' + ${item.index}}"
+                               th:text="${item.index}"></a>
+                        </li>
+                        <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                            <a class="page-link" href="#">...</a>
+                        </li>
+                    </th:block>
+                    <li class="page-item" th:classappend="${!CreatedClasses.paging.isNextEnabled()? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{${#httpServletRequest.requestURI}+'?pageNumber=' + ${CreatedClasses.paging.pageNumber + 1}}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<script>
+
+
+</script>
+<a href="index.html">Class Management: Home</a>
+</body>
+
+</html>
